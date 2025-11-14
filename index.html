@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel • Óptica Buenos Aires</title>
+  <link rel="icon" href="logo_Bs_As.png" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-left">
+    <img src="logo_Bs_As.png" alt="Óptica Buenos Aires" class="logo">
+    <div>
+      <h1 class="title">Panel Óptica Buenos Aires</h1>
+      <p class="subtitle">San Miguel · Buenos Aires · Argentina</p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="chip">
+      <span class="chip-label">Hoy</span>
+      <span id="chipFecha"></span>
+    </div>
+    <div class="chip">
+      <span class="chip-label">Hora</span>
+      <span id="chipHora"></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- Fila 1: clima + reloj grande -->
+  <section class="grid grid-2">
+    <article class="card">
+      <div class="card-header">
+        <h2>Clima en San Miguel</h2>
+        <span class="tag tag-soft" id="weatherUpdated">—</span>
+      </div>
+      <div id="weatherBox" class="card-body weather">
+        <div class="weather-main">
+          <div class="weather-temp" id="weatherTemp">--°</div>
+          <div class="weather-desc" id="weatherDesc">Consultando clima…</div>
+          <div class="weather-extra">
+            <span id="weatherFeel">Sensación: —</span>
+            <span id="weatherWind">Viento: —</span>
+          </div>
+        </div>
+        <div class="weather-meta">
+          <span class="tag tag-green" id="weatherStatus">Online</span>
+          <p class="muted small">Datos desde Open-Meteo (actualizados cada 15 minutos).</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-header">
+        <h2>Reloj de la Óptica</h2>
+      </div>
+      <div class="card-body clock">
+        <div id="clockTime" class="clock-time">--:--:--</div>
+        <div id="clockDate" class="clock-date">—</div>
+        <p class="muted small">Zona horaria: Argentina (GMT-3).</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- Fila 2: info de ventas / stock -->
+  <section class="grid grid-3">
+    <article class="card">
+      <div class="card-header">
+        <h2>Última venta</h2>
+        <span class="tag" id="ultimaVentaHora">—</span>
+      </div>
+      <div class="card-body">
+        <p class="label">Detalle</p>
+        <p id="ultimaVentaDesc" class="value">Cargando…</p>
+        <div class="row">
+          <div>
+            <p class="label">Empleado</p>
+            <p id="ultimaVentaEmp" class="value">—</p>
+          </div>
+          <div>
+            <p class="label">Forma de pago</p>
+            <p id="ultimaVentaFdp" class="value">—</p>
+          </div>
+        </div>
+        <p class="muted small">No se muestran montos ni totales, solo el movimiento.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-header">
+        <h2>Último anteojo agregado</h2>
+        <span class="tag tag-soft" id="ultimoStockFecha">—</span>
+      </div>
+      <div class="card-body">
+        <p class="label">N° de anteojo</p>
+        <p id="ultimoStockNumero" class="value">—</p>
+        <p class="label">Marca / Modelo</p>
+        <p id="ultimoStockDetalle" class="value">—</p>
+        <p class="label">Familia</p>
+        <p id="ultimoStockFamilia" class="value">—</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-header">
+        <h2>Último anteojo vendido</h2>
+        <span class="tag tag-soft" id="ultimoVendFecha">—</span>
+      </div>
+      <div class="card-body">
+        <p class="label">N° de anteojo</p>
+        <p id="ultimoVendNumero" class="value">—</p>
+        <p class="label">Marca / Modelo</p>
+        <p id="ultimoVendDetalle" class="value">—</p>
+        <div class="row">
+          <div>
+            <p class="label">Vendió</p>
+            <p id="ultimoVendVendedor" class="value">—</p>
+          </div>
+          <div>
+            <p class="label">Estado stock</p>
+            <p class="value"><span class="tag tag-green-outline" id="stockResumen">—</span></p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Fila 3: marca destacada + accesos -->
+  <section class="grid grid-2">
+    <article class="card">
+      <div class="card-header">
+        <h2>Marca más presente en stock</h2>
+        <span class="tag tag-soft" id="marcaUpdated">—</span>
+      </div>
+      <div class="card-body">
+        <p class="label">Marca</p>
+        <p id="marcaTopNombre" class="value">—</p>
+        <p class="label">Cantidad aproximada en stock</p>
+        <p id="marcaTopCantidad" class="value">—</p>
+        <p class="muted small">Se cuenta solo lo que no tiene fecha de venta (disponible para vender).</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-header">
+        <h2>Accesos rápidos</h2>
+      </div>
+      <div class="card-body shortcuts">
+        <a class="btn big" href="https://a32028974.github.io/Bs_As_carga_stock/" target="_blank" rel="noopener">
+          👓 Cargar nuevo anteojo
+        </a>
+        <a class="btn big" href="https://a32028974.github.io/Bs_As_ficha_caja/" target="_blank" rel="noopener">
+          💳 Registrar venta
+        </a>
+        <a class="btn big" href="https://a32028974.github.io/Bs_As_stock/" target="_blank" rel="noopener">
+          📦 Stock de armazones
+        </a>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="footer">
+  <span class="muted small">Óptica Buenos Aires · Panel interno · v1</span>
+</footer>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
