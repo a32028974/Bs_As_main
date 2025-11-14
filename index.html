@@ -29,49 +29,37 @@
 </header>
 
 <main class="wrap">
-  <!-- Fila 1: clima + reloj grande -->
-  <section class="grid grid-2">
-    <article class="card">
-      <div class="card-header">
-        <h2>Clima en San Miguel</h2>
-        <span class="tag tag-soft" id="weatherUpdated">—</span>
-      </div>
-      <div id="weatherBox" class="card-body weather">
-        <div class="weather-main">
-          <div class="weather-temp" id="weatherTemp">--°</div>
-          <div class="weather-desc" id="weatherDesc">Consultando clima…</div>
-          <div class="weather-extra">
-            <span id="weatherFeel">Sensación: —</span>
-            <span id="weatherWind">Viento: —</span>
-          </div>
-        </div>
-        <div class="weather-meta">
-          <span class="tag tag-green" id="weatherStatus">Online</span>
-          <p class="muted small">Datos desde Open-Meteo (actualizados cada 15 minutos).</p>
-        </div>
-      </div>
-    </article>
 
-    <article class="card">
-      <div class="card-header">
-        <h2>Reloj de la Óptica</h2>
-      </div>
-      <div class="card-body clock">
-        <div id="clockTime" class="clock-time">--:--:--</div>
-        <div id="clockDate" class="clock-date">—</div>
-        <p class="muted small">Zona horaria: Argentina (GMT-3).</p>
-      </div>
-    </article>
+  <!-- 1) Accesos rápidos -->
+  <section class="card shortcuts-card">
+    <div class="card-header">
+      <h2>Accesos rápidos</h2>
+    </div>
+    <div class="card-body shortcuts">
+      <a class="btn big" href="https://a32028974.github.io/Bs_As_carga_stock/" target="_blank" rel="noopener">
+        👓 Cargar nuevo anteojo
+      </a>
+      <a class="btn big" href="https://a32028974.github.io/Bs_As_ficha_caja/" target="_blank" rel="noopener">
+        💳 Registrar venta
+      </a>
+      <a class="btn big" href="https://a32028974.github.io/Bs_As_stock/" target="_blank" rel="noopener">
+        📦 Stock de armazones
+      </a>
+    </div>
   </section>
 
-  <!-- Fila 2: info de ventas / stock -->
-  <section class="grid grid-3">
-    <article class="card">
-      <div class="card-header">
-        <h2>Última venta</h2>
-        <span class="tag" id="ultimaVentaHora">—</span>
-      </div>
-      <div class="card-body">
+  <!-- 2) Ventas recientes: última venta + último anteojo vendido -->
+  <section class="card split-card">
+    <div class="card-header">
+      <h2>Ventas recientes</h2>
+    </div>
+    <div class="card-body split-2">
+      <!-- Columna izquierda: última venta -->
+      <div class="split-block">
+        <div class="split-block-header">
+          <h3>Última venta registrada</h3>
+          <span class="tag" id="ultimaVentaHora">—</span>
+        </div>
         <p class="label">Detalle</p>
         <p id="ultimaVentaDesc" class="value">Cargando…</p>
         <div class="row">
@@ -84,35 +72,21 @@
             <p id="ultimaVentaFdp" class="value">—</p>
           </div>
         </div>
-        <p class="muted small">No se muestran montos ni totales, solo el movimiento.</p>
+        <p class="muted small">Solo se muestra el movimiento, sin montos.</p>
       </div>
-    </article>
 
-    <article class="card">
-      <div class="card-header">
-        <h2>Último anteojo agregado</h2>
-        <span class="tag tag-soft" id="ultimoStockFecha">—</span>
-      </div>
-      <div class="card-body">
-        <p class="label">N° de anteojo</p>
-        <p id="ultimoStockNumero" class="value">—</p>
-        <p class="label">Marca / Modelo</p>
-        <p id="ultimoStockDetalle" class="value">—</p>
-        <p class="label">Familia</p>
-        <p id="ultimoStockFamilia" class="value">—</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-header">
-        <h2>Último anteojo vendido</h2>
-        <span class="tag tag-soft" id="ultimoVendFecha">—</span>
-      </div>
-      <div class="card-body">
+      <!-- Columna derecha: último anteojo vendido -->
+      <div class="split-block">
+        <div class="split-block-header">
+          <h3>Último anteojo vendido</h3>
+          <span class="tag tag-soft" id="ultimoVendFecha">—</span>
+        </div>
         <p class="label">N° de anteojo</p>
         <p id="ultimoVendNumero" class="value">—</p>
+
         <p class="label">Marca / Modelo</p>
         <p id="ultimoVendDetalle" class="value">—</p>
+
         <div class="row">
           <div>
             <p class="label">Vendió</p>
@@ -124,42 +98,81 @@
           </div>
         </div>
       </div>
-    </article>
+    </div>
   </section>
 
-  <!-- Fila 3: marca destacada + accesos -->
-  <section class="grid grid-2">
-    <article class="card">
-      <div class="card-header">
-        <h2>Marca más presente en stock</h2>
-        <span class="tag tag-soft" id="marcaUpdated">—</span>
-      </div>
-      <div class="card-body">
+  <!-- 3) Stock actual: marca top + último anteojo agregado -->
+  <section class="card split-card">
+    <div class="card-header">
+      <h2>Stock actual</h2>
+    </div>
+    <div class="card-body split-2">
+      <!-- Columna izquierda: marca más presente -->
+      <div class="split-block">
+        <div class="split-block-header">
+          <h3>Marca más presente en stock</h3>
+          <span class="tag tag-soft" id="marcaUpdated">—</span>
+        </div>
         <p class="label">Marca</p>
         <p id="marcaTopNombre" class="value">—</p>
-        <p class="label">Cantidad aproximada en stock</p>
-        <p id="marcaTopCantidad" class="value">—</p>
-        <p class="muted small">Se cuenta solo lo que no tiene fecha de venta (disponible para vender).</p>
-      </div>
-    </article>
 
-    <article class="card">
-      <div class="card-header">
-        <h2>Accesos rápidos</h2>
+        <p class="label">Cantidad aproximada disponible</p>
+        <p id="marcaTopCantidad" class="value">—</p>
+
+        <p class="muted small">Cuenta solo anteojos sin fecha de venta (disponibles).</p>
       </div>
-      <div class="card-body shortcuts">
-        <a class="btn big" href="https://a32028974.github.io/Bs_As_carga_stock/" target="_blank" rel="noopener">
-          👓 Cargar nuevo anteojo
-        </a>
-        <a class="btn big" href="https://a32028974.github.io/Bs_As_ficha_caja/" target="_blank" rel="noopener">
-          💳 Registrar venta
-        </a>
-        <a class="btn big" href="https://a32028974.github.io/Bs_As_stock/" target="_blank" rel="noopener">
-          📦 Stock de armazones
-        </a>
+
+      <!-- Columna derecha: último agregado -->
+      <div class="split-block">
+        <div class="split-block-header">
+          <h3>Último anteojo agregado</h3>
+          <span class="tag tag-soft" id="ultimoStockFecha">—</span>
+        </div>
+        <p class="label">N° de anteojo</p>
+        <p id="ultimoStockNumero" class="value">—</p>
+
+        <p class="label">Marca / Modelo</p>
+        <p id="ultimoStockDetalle" class="value">—</p>
+
+        <p class="label">Familia</p>
+        <p id="ultimoStockFamilia" class="value">—</p>
       </div>
-    </article>
+    </div>
   </section>
+
+  <!-- 4) Clima + hora juntos -->
+  <section class="card">
+    <div class="card-header">
+      <h2>Clima y hora</h2>
+      <span class="tag tag-soft" id="weatherUpdated">—</span>
+    </div>
+    <div class="card-body clima-hora">
+      <!-- Clima -->
+      <div class="weather">
+        <div class="weather-main">
+          <div class="weather-temp" id="weatherTemp">--°</div>
+          <div>
+            <div class="weather-desc" id="weatherDesc">Consultando clima…</div>
+            <div class="weather-extra">
+              <span id="weatherFeel">Sensación: —</span>
+              <span id="weatherWind">Viento: —</span>
+            </div>
+          </div>
+        </div>
+        <div class="weather-meta">
+          <span class="tag tag-green" id="weatherStatus">Online</span>
+          <p class="muted small">Datos desde Open-Meteo (se actualizan automáticamente).</p>
+        </div>
+      </div>
+
+      <!-- Hora -->
+      <div class="clock">
+        <div id="clockTime" class="clock-time">--:--:--</div>
+        <div id="clockDate" class="clock-date">—</div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footer">
